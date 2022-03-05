@@ -8,7 +8,7 @@
 % official EODY site [ https://eody.gov.gr/ ] and the research page [
 % https://www.stelios67pi.eu/ ].
 
-% Project is divided in three tasks.
+% Project is divided in four tasks.
 
 % Task 01: We analyze GR positivity rate and the probability distribution
 % of 25 EU countries, during Greece's maximum rate in the end of 2020 and
@@ -25,6 +25,11 @@
 % period of 12 weeks for our test, starting from September 2020 and ending 
 % around the end of November 2020. Again, this period was extremely crucial
 % to the pandemic course for Greece.
+
+% Task 04: We analyze Greece positivity rate full trajectory as a time
+% series. We test the series for stability using various algorithms and
+% graphical methods. Stability in a time series is crucial if we want to go
+% forward and make predictions.
 
 %% -- start fresh --
 
@@ -48,6 +53,7 @@ load FullEodyData.mat
 mycountry = 'Greece';
 indx = find(country==mycountry & level=='national'); % get chosen country's indeces from Testing file
 unique(country); % check if Testing file contains more countries than we want to
+grRate = positivity_rate(indx); % get Greece total positivity rate
 
 % -- find 2020 W45-W50 positivity rates --
 indx_weeks_Y20 = find(year_week(indx)>'2020-W44' & year_week(indx)<'2020-W51');
@@ -365,3 +371,13 @@ xlabel('Time period (Weeks)');
 % concerning Greek weekly positivity rate throughout all 12-week duration.
 % However in the end of the graph where the confidence interval grows, the
 % EU rate may become insignificant at later dates.
+
+%% *** TASK 04 ***
+
+% In this segment we analyze the full trajectory of Greece's positivity
+% rate, testing the series for stability using various algorithms and
+% plotting the moving average, moving standard deviation and
+% autocorrelation oscillations.
+
+analyzeTS(1:length(grRate),grRate,5,...
+    'Greece positivity rate time series analysis');

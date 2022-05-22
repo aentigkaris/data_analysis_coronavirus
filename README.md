@@ -1,4 +1,4 @@
-## Coronavirus Data Analysis
+# Coronavirus Data Analysis
 ### Ntigkaris E. Alexandros
 #### MATLAB R2018a
 
